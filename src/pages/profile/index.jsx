@@ -45,7 +45,7 @@ const Profile = () => {
               Logout
             </button>
             <button
-              onClick={() => notify("Under construction🏗️", "info")}
+              onClick={() => notify("Under Construction🏗️", "info")}
               className="bg-green-600 text-white px-4 py-2 rounded hover:bg-orange-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               Update

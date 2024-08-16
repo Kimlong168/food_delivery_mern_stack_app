@@ -25,13 +25,13 @@ const TableSection = () => {
     <section className="overflow-x-auto">
       <table className="w-full min-w-[300px]">
         <thead>
-          <tr className="border-b border-gray-300 text-gray-600">
-            <th className="text-start">Items</th>
-            <th className="text-start">Title</th>
-            <th className="text-start">Price</th>
-            <th className="text-start">Quantity</th>
-            <th className="text-start">Total</th>
-            <th className="text-start py-4 w-[100px]">Remove</th>
+          <tr className="border-b border-gray-300 text-gray-600 ">
+            <th className="text-start pr-6 py-4">Items</th>
+            <th className="text-start pr-6 py-4">Title</th>
+            <th className="text-start pr-6 py-4">Price</th>
+            <th className="text-start pr-6 py-4">Quantity</th>
+            <th className="text-start pr-6 py-4">Total</th>
+            <th className="text-start pr-6 py-4 w-[100px]">Remove</th>
           </tr>
         </thead>
         <tbody>
@@ -47,11 +47,11 @@ const TableSection = () => {
               <td className=" py-4">
                 <img width={50} src={item.product.image} alt="" />
               </td>
-              <td>{item.product.name}</td>
-              <td>${item.product.price}</td>
-              <td>
+              <td className="pr-3">{item.product.name}</td>
+              <td className="pr-3">${item.product.price}</td>
+              <td className="pr-3">
                 {" "}
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-1 md:gap-3">
                   <img
                     onClick={() => removeItemFromCart(item)}
                     className="w-7 h-7"
@@ -67,7 +67,9 @@ const TableSection = () => {
                   />
                 </div>
               </td>
-              <td>${(item.product.price * item.quantity).toFixed(2)}</td>
+              <td className="pr-3">
+                ${(item.product.price * item.quantity).toFixed(2)}
+              </td>
               <td
                 className="cursor-pointer"
                 onClick={() => removeItem(item.product._id)}

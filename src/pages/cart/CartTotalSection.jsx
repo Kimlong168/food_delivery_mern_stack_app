@@ -93,7 +93,12 @@ const CartTotalSection = () => {
               placeholder="promo code"
               type="text"
             />
-            <div className="py-3 px-5 bg-black text-white rounded">Submit</div>
+            <div
+              className="py-3 px-5 bg-black text-white rounded"
+              onClick={() => notify("Under Construction🏗️", "info")}
+            >
+              Submit
+            </div>
           </div>
         </div>
       </div>
