@@ -50,17 +50,6 @@ export const register = async (credentials) => {
   }
 };
 
-export const getUser = async (id) => {
-  try {
-    const response = await axiosClient.get(`/users/${id}`);
-
-    return response.data;
-  } catch (error) {
-    console.log("error: ", error.response.data);
-
-    return error.response.data;
-  }
-};
 
 // refresh token function
 export const refreshToken = async () => {

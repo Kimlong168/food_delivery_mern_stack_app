@@ -39,7 +39,7 @@ export const ProductProvider = ({ children }) => {
     dispatch({ type: "SET_PRODUCT", payload });
   };
 
-  const deleteProduct = (payload) => {
+  const removeProduct = (payload) => {
     dispatch({ type: "DELETE_PRODUCT", payload });
   };
 
@@ -60,7 +60,7 @@ export const ProductProvider = ({ children }) => {
       value={{
         state: state.products,
         setItems,
-        deleteProduct,
+        removeProduct,
         searchProduct,
         dispatch,
       }}

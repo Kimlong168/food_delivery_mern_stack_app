@@ -37,7 +37,7 @@ export const OrderProvider = ({ children }) => {
     dispatch({ type: "SET_ORDER", payload });
   };
 
-  const deleteOrder = (payload) => {
+  const removeOrder = (payload) => {
     dispatch({ type: "DELETE_ORDER", payload });
   };
 
@@ -58,7 +58,7 @@ export const OrderProvider = ({ children }) => {
       value={{
         state: state.orders,
         setItems,
-        deleteOrder,
+        removeOrder,
         searchOrder,
         dispatch,
       }}

@@ -15,6 +15,17 @@ import LoginForm from "./components/authentication/LoginForm";
 import SignUpForm from "./components/authentication/SignUpForm";
 
 import Dashboard from "./pages/admin/Dashboard";
+import Order from "./pages/admin/order";
+import Product from "./pages/admin/product";
+import CreateProduct from "./pages/admin/product/CreateProduct";
+import UpdateProduct from "./pages/admin/product/UpdateProduct";
+import User from "./pages/admin/user";
+import Category from "./pages/admin/category";
+import CreateCategory from "./pages/admin/category/CreateCategory";
+
+import PromoCode from "./pages/admin/promoCode";
+import ShowOrder from "./pages/admin/order/ShowOrder";
+import UpdateCategory from "./pages/admin/category/UpdateCategory";
 
 const router = createBrowserRouter([
   {
@@ -47,6 +58,46 @@ const router = createBrowserRouter([
       {
         path: "dashboard",
         element: <Dashboard />,
+      },
+      {
+        path: "order",
+        element: <Order />,
+      },
+      {
+        path: "order/:id",
+        element: <ShowOrder />,
+      },
+      {
+        path: "product",
+        element: <Product />,
+      },
+      {
+        path: "createProduct",
+        element: <CreateProduct />,
+      },
+      {
+        path: "updateProduct/:id",
+        element: <UpdateProduct />,
+      },
+      {
+        path: "user",
+        element: <User />,
+      },
+      {
+        path: "category",
+        element: <Category />,
+      },
+      {
+        path: "createCategory",
+        element: <CreateCategory />,
+      },
+      {
+        path: "updateCategory/:id",
+        element: <UpdateCategory />,
+      },
+      {
+        path: "promo_code",
+        element: <PromoCode />,
       },
     ],
   },

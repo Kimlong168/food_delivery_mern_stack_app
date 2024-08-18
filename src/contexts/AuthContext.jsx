@@ -5,7 +5,6 @@ import {
   login as apiLogin,
   logout as apiLogout,
   register as apiRegister,
-  getUser as apiGetUser,
   // refreshToken as apiRefreshToken,
 } from "../hooks/authentication/useAuth";
 
@@ -17,15 +16,6 @@ export const AuthProvider = ({ children }) => {
   );
   const [showForm, setShowForm] = useState(false);
 
-  const getUser = async () => {
-    const data = await apiGetUser(user._id);
-
-    if (data.status === "success") {
-      return data.data;
-    }
-
-    return null;
-  };
   // login function
   const login = async (credentials) => {
     const result = await apiLogin(credentials);
@@ -103,7 +93,6 @@ export const AuthProvider = ({ children }) => {
         register,
         showForm,
         setShowForm,
-        getUser,
       }}
     >
       {children}

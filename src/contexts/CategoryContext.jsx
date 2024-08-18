@@ -39,7 +39,7 @@ export const CategoryProvider = ({ children }) => {
     dispatch({ type: "SET_CATEGORY", payload });
   };
 
-  const deleteCategory = (payload) => {
+  const removeCategory = (payload) => {
     dispatch({ type: "DELETE_CATEGORY", payload });
   };
 
@@ -60,7 +60,7 @@ export const CategoryProvider = ({ children }) => {
       value={{
         state: state.categories,
         setItems,
-        deleteCategory,
+        removeCategory,
         searchCategory,
         dispatch,
       }}

@@ -5,7 +5,6 @@ import ProductCard from "../../components/ui/ProductCard";
 import Loading from "../../components/ui/Loading";
 import { useProducts } from "../../hooks/product/useProduct";
 
-
 const TopDishesSection = ({ category }) => {
   const { data, isLoading } = useProducts();
   const { state: products, dispatch } = useContext(ProductContext);
@@ -19,7 +18,6 @@ const TopDishesSection = ({ category }) => {
   return (
     <section>
       <h3 className="text-2xl font-semibold">Top dishes near you</h3>
-
 
       {/* food list */}
 
@@ -36,7 +34,7 @@ const TopDishesSection = ({ category }) => {
               {products
                 .filter(
                   (product) =>
-                    product.category._id === category || category === "All"
+                    product.category?._id === category || category === "All"
                 )
                 .map((product, index) => (
                   <ProductCard key={index} product={product} />
