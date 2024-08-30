@@ -37,7 +37,7 @@ export const UserProvider = ({ children }) => {
     dispatch({ type: "SET_USER", payload });
   };
 
-  const deleteUser = (payload) => {
+  const removeUser = (payload) => {
     dispatch({ type: "DELETE_USER", payload });
   };
 
@@ -56,9 +56,10 @@ export const UserProvider = ({ children }) => {
   return (
     <UserContext.Provider
       value={{
-        users: state.users,
+        state: state.users,
+        dispatch,
         setItems,
-        deleteUser,
+        removeUser,
         searchUser,
       }}
     >

@@ -50,53 +50,60 @@ export const register = async (credentials) => {
   }
 };
 
-
 // refresh token function
 export const refreshToken = async () => {
-  const user = JSON.parse(localStorage.getItem("user")); // Adjust this line based on how you store your token
+  const user = JSON.parse(localStorage.getItem("user"));
+  const refreshToken = JSON.parse(localStorage.getItem("refreshToken"));
+
   const tokenType = "Bearer";
-  console.log("old token: ", user.token);
-  console.log("old refresh token: ", user.refresh_token);
 
-  if (user && user.refresh_token) {
+  console.log("refreshToken", refreshToken);
+
+  if (refreshToken) {
     try {
-      const response = await axios.get(`${apiUrl}/refresh_token`, {
-        headers: {
-          Authorization: `${tokenType} ${user.refresh_token}`,
-          "Content-Type": "application/json",
-        },
-      });
+      // const response = await axiosClient.post(`${apiUrl}/refresh-token`);
 
-      const storedUser = localStorage.getItem("user");
+      const response = await axios.post(
+        `${apiUrl}/refresh-token`,
+        { email: user.email }, // Include email in the body
+        {
+          headers: {
+            Authorization: `${tokenType} ${refreshToken}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
-      // Parse the data to a JavaScript object
-      let userData = storedUser ? JSON.parse(storedUser) : {};
+      console.log("response token", response.data);
 
-      if (response.data?.header?.statusCode === 200) {
+      if (response.data?.status === "success") {
         // Update the token and refresh_token properties
-        userData.token = response.data.body.token;
-        userData.refresh_token = response.data.body.refresh_token;
+        const newToken = response.data.data.token;
+        const newUserData = response.data.data.user;
+        const newRefreshToken = response.data.data.refreshToken;
 
-        console.log("new  token:", userData.token);
-        console.log("new refresh token:", userData.refresh_token);
-
-        // Convert the updated object back to a JSON string
-        const updatedData = JSON.stringify(userData);
+        console.log("Token refreshed", newToken);
 
         // Save the updated JSON string back to localStorage
-        localStorage.setItem("user", updatedData);
-        localStorage.setItem("token", userData.token);
+        localStorage.setItem("token", JSON.stringify(newToken));
+        localStorage.setItem("user", JSON.stringify(newUserData));
+        localStorage.setItem("refreshToken", JSON.stringify(newRefreshToken));
         return response.data;
       } else {
-        console.log("Token expired", response.data);
-        localStorage.removeItem("user");
-        localStorage.removeItem("token");
-        alert("Token expired, please login again");
-        window.location.href = "/login";
-        return response.data;
+        throw new Error(
+          "Error refreshing token: " + response.data?.message || "Unknown error"
+        );
       }
     } catch (error) {
       console.log("Error refreshing token", error);
+      if (error.response.data.status === "error") {
+        localStorage.removeItem("user");
+        localStorage.removeItem("token");
+        localStorage.removeItem("refreshToken");
+        alert("Token expired, please login again");
+
+        window.location.href = "/";
+      }
       return false;
     }
   } else {

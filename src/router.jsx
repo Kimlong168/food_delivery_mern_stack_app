@@ -23,9 +23,10 @@ import User from "./pages/admin/user";
 import Category from "./pages/admin/category";
 import CreateCategory from "./pages/admin/category/CreateCategory";
 
-import PromoCode from "./pages/admin/promoCode";
 import ShowOrder from "./pages/admin/order/ShowOrder";
 import UpdateCategory from "./pages/admin/category/UpdateCategory";
+import CreateUser from "./pages/admin/user/CreateUser";
+import UpdateUser from "./pages/admin/user/UpdateUser";
 
 const router = createBrowserRouter([
   {
@@ -83,6 +84,16 @@ const router = createBrowserRouter([
         path: "user",
         element: <User />,
       },
+
+      {
+        path: "createUser",
+        element: <CreateUser />,
+      },
+
+      {
+        path: "updateUser/:id",
+        element: <UpdateUser />,
+      },
       {
         path: "category",
         element: <Category />,
@@ -94,10 +105,6 @@ const router = createBrowserRouter([
       {
         path: "updateCategory/:id",
         element: <UpdateCategory />,
-      },
-      {
-        path: "promo_code",
-        element: <PromoCode />,
       },
     ],
   },

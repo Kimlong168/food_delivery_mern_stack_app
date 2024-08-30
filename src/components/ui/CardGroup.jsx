@@ -16,7 +16,7 @@ const CardGroup = ({ itemNumber }) => {
           numberOfItem={itemNumber?.university}
         />
       </div>
-      <div className="grid gap-4 grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-4 md:grid-cols-3">
         <Card
           title="Product"
           subtitle="Manage products"
@@ -38,13 +38,7 @@ const CardGroup = ({ itemNumber }) => {
           Icon={FaSchoolCircleCheck}
           numberOfItem={itemNumber?.scholarship}
         />
-        <Card
-          title="Promo Code"
-          subtitle="Manage promo code"
-          href="/admin/promo_code"
-          Icon={FaSchoolCircleCheck}
-          numberOfItem={itemNumber?.scholarship}
-        />
+      
       </div>
     </div>
   );

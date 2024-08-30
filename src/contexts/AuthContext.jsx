@@ -1,11 +1,12 @@
 // context/AuthContext.js
 import PropTypes from "prop-types";
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import {
   login as apiLogin,
   logout as apiLogout,
   register as apiRegister,
-  // refreshToken as apiRefreshToken,
+  refreshToken as apiRefreshToken,
+  refreshToken,
 } from "../hooks/authentication/useAuth";
 
 export const AuthContext = createContext();
@@ -26,6 +27,10 @@ export const AuthProvider = ({ children }) => {
       // store user data in local storage
       localStorage.setItem("user", JSON.stringify(result.data.user));
       localStorage.setItem("token", JSON.stringify(result.data.token));
+      localStorage.setItem(
+        "refreshToken",
+        JSON.stringify(result.data.refreshToken)
+      );
       setUser(result.data.user);
 
       return true;
@@ -43,6 +48,7 @@ export const AuthProvider = ({ children }) => {
       // remove user data from local storage
       localStorage.removeItem("user");
       localStorage.removeItem("token");
+      localStorage.removeItem("refreshToken");
 
       return true;
     }
@@ -56,32 +62,35 @@ export const AuthProvider = ({ children }) => {
     console.log("data: ", result);
 
     if (result.status === "success") {
-      return true;
+      return {
+        status: "success",
+        data: result.data,
+      };
     }
 
-    return false;
+    return {
+      status: "error",
+      error: result.error,
+    };
   };
-
-  // get user data
-
   // refresh token
-  // useEffect(() => {
-  //   if (user) {
-  //     const interval = setInterval(() => {
-  //       apiRefreshToken();
-  //     }, 15 * 60 * 1000); // refresh every 15 minute
+  useEffect(() => {
+    if (user) {
+      const interval = setInterval(() => {
+        apiRefreshToken();
+      }, 1 * 30 * 1000); // refresh every 15 minute
 
-  //     return () => clearInterval(interval);
-  //   }
-  // }, [user]);
+      return () => clearInterval(interval);
+    }
+  }, [user]);
 
   // refresh token on first load
-  // useEffect(() => {
-  //   if (user) {
-  //     apiRefreshToken();
-  //     console.log("refresh token on first load");
-  //   }
-  // }, [user]);
+  useEffect(() => {
+    if (user) {
+      apiRefreshToken();
+      console.log("refresh token on first load");
+    }
+  }, [user]);
 
   return (
     <AuthContext.Provider
@@ -91,6 +100,7 @@ export const AuthProvider = ({ children }) => {
         login,
         logout,
         register,
+        refreshToken,
         showForm,
         setShowForm,
       }}

@@ -112,12 +112,7 @@ const AdminLayout = () => {
       tabName: "user",
       icon: <FaSchoolCircleCheck />,
       pathName: "/admin/user",
-    },
-    {
-      tabName: "Promo Code",
-      icon: <FaSchoolCircleCheck />,
-      pathName: "/admin/promo_code",
-    },
+    }
   ];
 
   return (

@@ -38,7 +38,7 @@ export const useCreateUser = () => {
   const queryClient = useQueryClient();
   return useMutation(
     async (newUser) => {
-      const response = await axiosClient.post("/users", newUser);
+      const response = await axiosClient.post("/register", newUser);
       console.log("user result:", response.data);
       return response.data;
     },
@@ -55,7 +55,7 @@ export const useUpdateUser = () => {
   const queryClient = useQueryClient();
   return useMutation(
     async (user) => {
-      const response = await axiosClient.put(`/users/${user._id}`, user);
+      const response = await axiosClient.put(`/users/${user.id}`, user);
       return response.data;
     },
     {

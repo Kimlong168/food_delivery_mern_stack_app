@@ -37,12 +37,12 @@ const SignUpForm = () => {
     setIsSubmitting(true);
     const data = await register(credentials);
 
-    if (data) {
+    if (data.sucess === "success") {
       setShowForm("login");
       notify("Register successful");
     } else {
       setIsSubmitting(false);
-      notify("Register fail!", "error");
+      notify(data.error.message, "error");
     }
   };
 
@@ -88,7 +88,7 @@ const SignUpForm = () => {
                 <div className="absolute right-3 top-[50%] -translate-y-[50%]">
                   <span
                     className="cursor-pointer"
-                    onChange={() => setShowPassword((prev) => !prev)}
+                    onClick={() => setShowPassword((prev) => !prev)}
                   >
                     {showPassword ? (
                       <IoMdEye className="text-gray-600" />
