@@ -11,7 +11,7 @@ export const renderRows = (item, index, handleDelete, handleStatusChange) => {
       >
         <td className="px-4 py-3">{index + 1}</td>
         <td className="px-4 py-3 min-w-[250px]">{item._id}</td>
-        <td className="px-4 py-3 min-w-[250px]">{item.user.name}</td>
+        <td className="px-4 py-3 min-w-[250px]">{item.user?.name}</td>
         <td className="px-4 py-3 min-w-[250px]">$ {item.totalPrice}</td>
         <td className="px-4 py-3 min-w-[250px] group">
           <div className="group-hover:hidden">

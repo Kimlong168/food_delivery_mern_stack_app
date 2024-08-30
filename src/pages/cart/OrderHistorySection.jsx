@@ -20,10 +20,12 @@ const OrderHistorySection = () => {
 
   const [searchKeyword, setSearchKeyword] = useState("");
 
+  console.log("dataaa", data);
+
   // update order history list
   useEffect(() => {
     if (data && user) {
-      const filterOrder = data.filter((order) => order.user._id == user._id);
+      const filterOrder = data.filter((order) => order.user?._id == user._id);
       dispatch({ type: "SET_ORDER", payload: filterOrder });
     }
   }, [data, dispatch, user]);
@@ -71,7 +73,7 @@ const OrderHistorySection = () => {
                   if (e.target.value.trim() === "") {
                     setIsSearch(false);
                     const filterOrder = data.filter(
-                      (order) => order.user._id == user._id
+                      (order) => order.user?._id == user._id
                     );
                     dispatch({ type: "SET_ORDER", payload: filterOrder });
                   }
@@ -164,7 +166,7 @@ const OrderHistorySection = () => {
                               {order._id}
                             </td>
                             <td className=" dark:text-gray-400 dark:bg-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                              {order.user.name}
+                              {order.user?.name}
                             </td>
 
                             <td className=" dark:text-gray-400 dark:bg-gray-900 font-light px-6 py-4 whitespace-nowrap">

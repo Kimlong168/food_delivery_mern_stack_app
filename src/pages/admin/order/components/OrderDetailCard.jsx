@@ -78,7 +78,7 @@ const OrderDetailCard = ({ _id, user, products, totalPrice, status }) => {
                         {/* image */}
                         <td className="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0 hidden md:table-cell">
                           <img
-                            src={item.product.image}
+                            src={item.product?.image}
                             width="64"
                             height="64"
                             alt="Product image"
@@ -89,7 +89,7 @@ const OrderDetailCard = ({ _id, user, products, totalPrice, status }) => {
                         <td
                           className={`p-4 align-middle [&amp;:has([role=checkbox])]:pr-0 font-medium`}
                         >
-                          {item.product.name}
+                          {item.product?.name}
                         </td>
                         {/* quantity */}
                         <td
@@ -101,7 +101,7 @@ const OrderDetailCard = ({ _id, user, products, totalPrice, status }) => {
                         <td
                           className={`p-4 align-middle [&amp;:has([role=checkbox])]:pr-0`}
                         >
-                          {item.product.price} $
+                          {item.product?.price} $
                         </td>
                       </tr>
                     ))}

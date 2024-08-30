@@ -78,7 +78,7 @@ export const AuthProvider = ({ children }) => {
     if (user) {
       const interval = setInterval(() => {
         apiRefreshToken();
-      }, 1 * 30 * 1000); // refresh every 15 minute
+      }, 15 * 60 * 1000); // refresh every 15 minute
 
       return () => clearInterval(interval);
     }
