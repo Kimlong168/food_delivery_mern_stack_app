@@ -19,14 +19,14 @@ Make sure you have the following installed:
 Start by cloning the repository to your local machine:
 
 ```bash
-git clone https://github.com/Kimlong168/cs_volunteer_blog.git
+git clone https://github.com/Kimlong168/food_delivery_mern_stack_app.git
 ```
 
 ### Clone the Repository
 Change into the project directory:
 
 ```bash
-cd cs_volunteer_blog
+cd food_delivery_mern_stack_app
 ```
 
 ### Install Dependencies
